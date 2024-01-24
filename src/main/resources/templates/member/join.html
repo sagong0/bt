@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org">
+<!-- head -->
+<header th:replace="~{header :: header_head}"/>
+<!-- 네비게이션 바 -->
+<nav th:replace="~{header :: header_nav}"/>
+<body>
+<div class="container">
+  <h2>회원가입</h2>
+  <div class="panel panel-default">
+    <div class="panel-heading">회원가입</div>
+    <div class="panel-body">
+      <form id="joinF" method="post" action="${contextPath}/memRegister.do">
+        <table class="table table-bordered" style="text-align: center; border: 1px soild #ddd;">
+          <tr>
+            <td style="width:110px; vertical-align: middle;">아이디</td>
+            <td><input id="mid" name="mid" class="form-control" type="text" maxlength="20" placeholder="아이디를 입력해주세요."/></td>
+            <td style="width:110px;"><button type="button" class="btn btn-primary btn-sm" onclick="ck_id();">중복확인</button></td>
+          </tr>
+          <tr>
+            <td style="width:110px; vertical-align: middle;">비밀번호</td>
+            <td colspan="2"><input id="mpw" name="mpw" onkeyup="ck_pw();" class="form-control" type="password" maxlength="20" placeholder="비밀번호를 입력해주세요."/></td>
+          </tr>
+          <tr>
+            <td style="width:110px; vertical-align: middle;">비밀번호확인</td>
+            <td colspan="2"><input id="mpw2" onkeyup="ck_pw();" class="form-control" type="password" maxlength="20" placeholder="비밀번호를 확인해주세요."/></td>
+          </tr>
+          <tr>
+            <td style="width:110px; vertical-align: middle;">사용자명</td>
+            <td colspan="2"><input id="mname" name="mname" class="form-control" type="text" maxlength="20" placeholder="이름을 입력하세요."/></td>
+          </tr>
+          <tr>
+            <td style="width:110px; vertical-align: middle;">나이</td>
+            <td colspan="2"><input id="mage" name="mage" class="form-control" type="text" maxlength="20" placeholder="나이를 입력하세요."/></td>
+          </tr>
+          <tr>
+            <td style="width:110px; vertical-align: middle;">성별</td>
+            <td colspan="2">
+              <div class="form-group" style="text-align:center; margin: 0 auto;">
+                <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-primary active">
+                    <input type="radio" autocomplete="off" name="mgender" value="남자" checked/>남자
+                  </label>
+                  <label class="btn btn-primary">
+                    <input type="radio" autocomplete="off" name="mgender" value="여자"/>여자
+                  </label>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="width:110px; vertical-align: middle;">이메일</td>
+            <td colspan="2"><input class="form-control" id="memail" name="memail" type="text" maxlength="30" placeholder="이메일을 입력하세요."/></td>
+          </tr>
+
+          <!-- 권한 체크박스 추가 -->
+          <tr>
+            <td style="width:110px; vertical-align: middle;">사용자 권한</td>
+            <td colspan="2">
+              <input type="checkbox" name="authList[0].auth" value="ROLE_USER"> ROLE_USER
+              <input type="checkbox" name="authList[1].auth" value="ROLE_MANAGER"> ROLE_MANAGER
+              <input type="checkbox" name="authList[2].auth" value="ROLE_ADMIN"> ROLE_ADMIN
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="3" style="text-align: left;">
+              <span id="cpw_msg" style="color: red;"></span><input type="submit" id="joinOkBtn" class="btn btn-primary btn-sm pull-right" value="등록"/>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+    <div class="panel-footer">푸터임</div>
+  </div>
+</div>
+</body>
+</html>
