@@ -1,6 +1,7 @@
-package Board.bt.repository;
+package Board.bt.repository.member;
 
 import Board.bt.domain.Member;
+import Board.bt.repository.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
