@@ -4,4 +4,7 @@
     <insert id="save" useGeneratedKeys="true" keyProperty="idx">
 
     </insert>
+    <select id="findAll" resultType="Board.bt.domain.Member">
+        select * from Member;
+    </select>
 </mapper>
