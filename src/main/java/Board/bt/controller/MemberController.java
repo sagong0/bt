@@ -17,4 +17,11 @@ public class MemberController {
     public String memberForm(){
         return "member/";
     }
+
+    @PostMapping("/member/login")
+    public String memberLogin(){
+
+        return "redirect:/";
+    }
+
 }

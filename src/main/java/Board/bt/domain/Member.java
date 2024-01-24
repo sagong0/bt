@@ -1,5 +1,6 @@
 package Board.bt.domain;
 
+import Board.bt.domain.enums.MemberRole;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
