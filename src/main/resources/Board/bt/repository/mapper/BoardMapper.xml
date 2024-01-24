@@ -1,0 +1,11 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board.bt.repository.mapper.BoardMapper">
+    <insert id="saveBoard" useGeneratedKeys="true" keyProperty="idx">
+       insert into post (title,content,board_like,dislike,count,file_url,filename,writer,member_id,created_at)
+        values (#{title},#{content},#{like},#{dislike},0,#{fileUrl},#{fileName},#{writer},#{memberId},now());
+    </insert>
+    <select id="findBoardById" resultType="Board">
+        select * from post where id = #{boardId}
+    </select>
+</mapper>
