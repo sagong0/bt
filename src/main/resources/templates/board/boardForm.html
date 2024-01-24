@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- head -->
+<header th:replace="~{header :: header_head}"/>
+<!-- 네비게이션 바 -->
+<nav th:replace="~{header :: header_nav}"/>
+<body>
+<!-- 글쓰기 폼 및 내용을 여기에 추가하세요 -->
+<h2>새 글 쓰기</h2>
+<form>
+  <table class="table">
+    <tr>
+      <td>제목</td>
+      <td><input type="text" class="form-control"/></td>
+    </tr>
+    <tr>
+      <td>내용</td>
+      <td><textarea rows="7" class="form-control"></textarea></td>
+    </tr>
+    <tr>
+      <td>작성자</td>
+      <td><input type="text" class="form-control"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <button type="button" onclick="" class="btn btn-success">목록</button>
+        <button type="button" onclick="" class="btn btn-info">등록</button>
+      </td>
+    </tr>
+  </table>
+</form>
+
+<!-- 필요한 경우 추가적인 내용이나 스크립트를 추가하세요 -->
+</body>
+
+</html>
