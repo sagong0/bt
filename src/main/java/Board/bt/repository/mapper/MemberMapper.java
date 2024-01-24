@@ -1,4 +1,4 @@
-package Board.bt.repository;
+package Board.bt.repository.mapper;
 
 import Board.bt.domain.Member;
 import org.apache.ibatis.annotations.Mapper;

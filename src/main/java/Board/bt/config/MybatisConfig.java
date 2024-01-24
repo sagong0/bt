@@ -1,8 +1,8 @@
 package Board.bt.config;
 
-import Board.bt.repository.MemberMapper;
-import Board.bt.repository.MemberRepository;
-import Board.bt.repository.MemberRepositoryImpl;
+import Board.bt.repository.mapper.MemberMapper;
+import Board.bt.repository.member.MemberRepository;
+import Board.bt.repository.member.MemberRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 

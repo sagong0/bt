@@ -1,7 +1,6 @@
 package Board.bt.controller;
 
-import Board.bt.repository.MemberRepository;
-import Board.bt.repository.MemberRepositoryImpl;
+import Board.bt.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

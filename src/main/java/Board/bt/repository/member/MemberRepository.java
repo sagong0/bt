@@ -1,4 +1,4 @@
-package Board.bt.repository;
+package Board.bt.repository.member;
 
 import Board.bt.domain.Member;
 import lombok.RequiredArgsConstructor;
