@@ -12,7 +12,7 @@ public class HomeController {
     @GetMapping("/")
     public String mainPage(){
         memberRepository.findAll();
-        return "board/index";
+        return "index";
     }
 
     @GetMapping("/board/write")

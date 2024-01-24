@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- head -->
+<header th:replace="~{header :: header_head}"/>
+<!-- 네비게이션 바 -->
+<nav th:replace="~{header :: header_nav}"/>
+
+<!-- 게시글 목록 테이블 -->
+  <div class="container mt-4">
+    <h2>게시글 목록</h2>
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">번호</th>
+        <th scope="col">제목</th>
+        <th scope="col">글쓴이</th>
+        <th scope="col">작성일</th>
+        <th scope="col">조회</th>
+        <th scope="col">추천</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- 예시 게시글 데이터 -->
+      <tr>
+        <th scope="row">1</th>
+        <td><a href="#">게시글 제목 1</a></td>
+        <td>글쓴이1</td>
+        <td>2024-01-23</td>
+        <td>100</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td><a href="#">게시글 제목 2</a></td>
+        <td>글쓴이2</td>
+        <td>2024-01-24</td>
+        <td>80</td>
+        <td>3</td>
+      </tr>
+      <!-- 다른 게시글들도 유사하게 추가 -->
+      </tbody>
+    </table>
+  </div>
+  <!-- 글쓰기 버튼 -->
+  <div class="text-right mb-3">
+    <a th:href="@{/board/write}" class="btn btn-primary ml-auto">글쓰기</a>
+  </div>
+
+  <!-- 검색 칸 -->
+  <div class="input-group mb-3 justify-content-center">
+    <div class="input-group-prepend">
+      <select class="custom-select" id="inputGroupSelect01">
+        <option value="1">제목</option>
+        <option value="2">내용</option>
+        <option value="3">글쓴이</option>
+      </select>
+    </div>
+    <input type="text" class="form-control col-4" placeholder="검색어를 입력하세요" aria-label="검색어를 입력하세요" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+    </div>
+  </div>
+</div>
+
+<!-- 부트스트랩 및 jQuery, Popper.js 스크립트 추가 -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

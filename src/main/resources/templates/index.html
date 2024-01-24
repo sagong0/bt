@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<!-- head -->
+<header th:replace="~{header :: header_head}"/>
+<!-- 네비게이션 바 -->
+<nav th:replace="~{header :: header_nav}"/>
+
+<!-- 본문 내용 -->
+<div class="container mt-4">
+    <!-- 여기에 커뮤니티 내용 추가 -->
+    <h2>Welcome to the Community!</h2>
+    <p>This is a sample community site. Feel free to explore!</p>
+
+</div>
+
+<!-- 부트스트랩 및 jQuery, Popper.js 스크립트 추가 -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
