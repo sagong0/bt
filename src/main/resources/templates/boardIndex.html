@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Community Site</title>
+    <!-- 부트스트랩 CSS 추가 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<nav th:replace="~{header :: header}"></nav>
+<body>
+    <!-- 네비게이션 바 -->
+
+
+    <!-- 본문 내용 -->
+    <div class="container mt-4">
+        <!-- 여기에 커뮤니티 내용 추가 -->
+        <h2>Welcome to the Community!</h2>
+        <p>This is a sample community site. Feel free to explore!</p>
+        <div class="container mt-4">
+            <h2>게시글 목록</h2>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">번호</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">글쓴이</th>
+                        <th scope="col">작성일</th>
+                        <th scope="col">조회</th>
+                        <th scope="col">추천</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 예시 게시글 데이터 -->
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><a href="#">게시글 제목 1</a></td>
+                        <td>글쓴이1</td>
+                        <td>2024-01-23</td>
+                        <td>100</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td><a href="#">게시글 제목 2</a></td>
+                        <td>글쓴이2</td>
+                        <td>2024-01-24</td>
+                        <td>80</td>
+                        <td>3</td>
+                    </tr>
+                    <!-- 다른 게시글들도 유사하게 추가 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 부트스트랩 및 jQuery, Popper.js 스크립트 추가 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
