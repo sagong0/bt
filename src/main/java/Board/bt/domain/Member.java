@@ -10,8 +10,13 @@ import java.time.LocalDateTime;
 @Getter @Setter @ToString
 public class Member {
     private Long idx;
+    private String userId;
+    private String userPw;
     private String username;
-    private String userpw;
+    private int age;
+    private String gender;
+    private String email;
+    private MemberRole role;
     private int point;
     private String profileImgUrl;
     private LocalDateTime createdAt;
