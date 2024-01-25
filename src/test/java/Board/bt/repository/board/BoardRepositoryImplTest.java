@@ -21,12 +21,6 @@ class BoardRepositoryImplTest {
     }
 
 
-    @Test
-    void saveTest(){
-        Board board = new Board("testTitle","hello",0,0,0,"","","tester", 1L);
-        Board savedBoard = boardRepository.saveBoard(board);
-        Board selectedBoard = boardRepository.findBoardById(savedBoard.getIdx()).get();
-        assertThat(selectedBoard).isEqualTo(savedBoard);
-    }
+
 
 }

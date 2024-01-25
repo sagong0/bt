@@ -14,10 +14,10 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class CdnService {
-    public String fileUpload(MultipartFile image) {
+    public String fileUpload(MultipartFile file) {
         FTPClient ftp = new FTPClient();
         String url = "";
-        String extension = StringUtils.getFilenameExtension(image.getOriginalFilename());
+        String extension = StringUtils.getFilenameExtension(file.getOriginalFilename());
         ftp.setControlEncoding("utf-8");
         //String filename = image.getOriginalFilename();
         FTPClientConfig ftpConfig = new FTPClientConfig();
@@ -31,7 +31,7 @@ public class CdnService {
             ftp.connect(host, port);
             if (ftp.login(user, pass)) {
                 ftp.setFileType(FTP.BINARY_FILE_TYPE);
-                boolean result = ftp.storeFile("/www/img/" + uuid + "." + extension, image.getInputStream());
+                boolean result = ftp.storeFile("/www/img/" + uuid + "." + extension, file.getInputStream());
                 if (result) {
                     url = "http://wjswjdgh123.cdn1.cafe24.com/img/" + uuid + "." + extension;
                     return url;

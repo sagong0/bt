@@ -1,16 +1,13 @@
-package Board.bt.repository.board;
+package Board.bt.service.board;
 
 import Board.bt.domain.Board;
-import Board.bt.domain.Member;
-import org.springframework.stereotype.Repository;
+import Board.bt.repository.board.BoardSearchCond;
 
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-public interface BoardRepository {
+public interface BoardService {
     void saveBoard(Board board);
     List<Board> findAllBoard(BoardSearchCond cond);
     Optional<Board> findBoardById(Long boardId);
-
 }

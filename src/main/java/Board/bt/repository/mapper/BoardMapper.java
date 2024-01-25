@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Mapper
 public interface BoardMapper {
-    Board saveBoard(Board board);
+    void saveBoard(Board board);
 
     List<Board> findAllBoard(BoardSearchCond cond);
     Optional<Board> findBoardById(Long boardId);
