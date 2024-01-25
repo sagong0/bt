@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface MemberRepository {
-    void save(Member member);
+    int save(Member member);
     List<Member> findAll();
 }

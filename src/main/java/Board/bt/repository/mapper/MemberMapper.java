@@ -7,6 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface MemberMapper {
-    void save(Member member);
+    int save(Member member);
     List<Member> findAll();
 }

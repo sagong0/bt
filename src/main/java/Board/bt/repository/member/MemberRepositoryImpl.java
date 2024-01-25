@@ -14,8 +14,8 @@ public class MemberRepositoryImpl implements MemberRepository{
     private final MemberMapper memberMapper;
 
     @Override
-    public void save(Member member) {
-        this.memberMapper.save(member);
+    public int save(Member member) {
+        return this.memberMapper.save(member);
     }
 
     @Override
