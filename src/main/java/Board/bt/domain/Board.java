@@ -13,14 +13,14 @@ public class Board {
     private Long idx;
     private String title;
     private String content;
-    private Integer like;
+    private Integer boardLike;
     private Integer dislike;
     private Integer count;
     private String fileUrl;
     private String fileName;
     private String writer;
     private Long memberId;
-    private LocalDateTime createdAt;
+    private String createdAt;
 
 
 

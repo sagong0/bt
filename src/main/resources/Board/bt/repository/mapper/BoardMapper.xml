@@ -8,4 +8,11 @@
     <select id="findBoardById" resultType="Board">
         select * from post where id = #{boardId}
     </select>
+    <select id="findAllBoard" resultType="Board">
+        select idx,title,board_like as boardLike,dislike,count,writer,date_format(created_at,'%Y,%m.%d') as createdAt from post
+        <where>
+
+        </where>
+        order by idx desc;
+    </select>
 </mapper>

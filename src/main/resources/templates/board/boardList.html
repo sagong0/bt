@@ -22,23 +22,14 @@
       </thead>
       <tbody>
       <!-- 예시 게시글 데이터 -->
-      <tr>
-        <th scope="row">1</th>
-        <td><a href="#">게시글 제목 1</a></td>
-        <td>글쓴이1</td>
-        <td>2024-01-23</td>
-        <td>100</td>
-        <td>5</td>
+      <tr th:each="board : ${boards}">
+        <th scope="row" th:text="${board.idx}"></th>
+        <td><a href="#" th:text="${board.title}"></a></td>
+        <td th:text="${board.writer}"></td>
+        <td th:text="${board.createdAt}"></td>
+        <td th:text="${board.count}"></td>
+        <td th:text="${board.boardLike}"></td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td><a href="#">게시글 제목 2</a></td>
-        <td>글쓴이2</td>
-        <td>2024-01-24</td>
-        <td>80</td>
-        <td>3</td>
-      </tr>
-      <!-- 다른 게시글들도 유사하게 추가 -->
       </tbody>
     </table>
   </div>
