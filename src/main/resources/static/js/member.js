@@ -25,11 +25,11 @@ function register(){
         userPw2.focus();
         return;
     }
-     else if(age.value.trim() == "" || isNaN(age.value)){
+    /* else if(age.value.trim() == "" || isNaN(age.value)){
         alert("사용자 나이를 확인해주세요.");
         age.focus();
         return;
-    }
+    }*/
     else if(username.value.trim() == "" || !isNaN(username.value)){
         alert("사용자 이름을 확인해주세요.");
     } else if(email.value == ""){

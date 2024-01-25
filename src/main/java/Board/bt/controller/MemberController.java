@@ -2,6 +2,7 @@ package Board.bt.controller;
 
 import Board.bt.domain.Member;
 import Board.bt.service.member.MemberService;
+import Board.bt.utils.MemberValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -21,6 +24,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MemberController {
 
     private final MemberService memberService;
+    private final MemberValidator memberValidator;
+
+    @InitBinder
+    public void init(WebDataBinder dataBinder){
+        dataBinder.addValidators(memberValidator);
+    }
 
     @GetMapping("/member/add")
     public String memberFormCreate(Model model){
@@ -30,18 +39,6 @@ public class MemberController {
 
     @PostMapping("/member/add")
     public String memberForm(@Validated @ModelAttribute Member member, BindingResult bindingResult){
-        log.info("Member = {}", member);
-
-        if(!StringUtils.hasText(member.getUserId()) || !member.getUserId().matches("^[가-힣]*$")){
-//            bindingResult
-//                    .addError(new FieldError("member","userId",member.getUserId(),false,new String[]{"required.member.userId"},null,null));
-            bindingResult.rejectValue("userId","noHanguel");
-        }
-        if(member.getAge() == 0 || member.getAge() > 100){
-//            bindingResult
-//                    .addError(new FieldError("member", "age",member.getAge(), false, new String[]{"max.member.age"},new Object[]{100},null));
-            bindingResult.rejectValue("age","max",new Object[]{100}, null);
-        }
 
         if(bindingResult.hasErrors()){
             log.info("errors = {} ", bindingResult);
