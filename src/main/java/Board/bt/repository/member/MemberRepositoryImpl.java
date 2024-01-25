@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -22,6 +23,11 @@ public class MemberRepositoryImpl implements MemberRepository{
     public List<Member> findAll() {
         List<Member> members = memberMapper.findAll();
         return members;
+    }
+
+    @Override
+    public Optional<Member> findOneByUserId(String userId) {
+        return memberMapper.findOneByUserId(userId);
     }
 
 }

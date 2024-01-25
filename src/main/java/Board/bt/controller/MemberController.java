@@ -12,10 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
@@ -52,10 +49,26 @@ public class MemberController {
         return "redirect:/";
     }
 
+    /**
+     * Id 중복 체크
+     */
+    @GetMapping("/member/check-userId/{userId}")
+    @ResponseBody
+    public String checkUserId(@PathVariable("userId") String userId){
+        return memberService.userIdCheck(userId);
+    }
+
+    @GetMapping("/member/login")
+    public String memberLoginForm(){
+        return "member/loginForm";
+    }
+
+    /*
     @PostMapping("/member/login")
     public String memberLogin(){
 
-        return "redirect:/";
+        return "member/";
     }
+    */
 
 }

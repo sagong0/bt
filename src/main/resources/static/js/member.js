@@ -7,6 +7,9 @@ var age = document.getElementById("age");
 var email = document.getElementById("email");
 
 
+/**
+* 회원가입 PART
+*/
 function register(){
     var e = window.event;
     e.preventDefault();
@@ -44,6 +47,37 @@ function register(){
         memberForm.submit();
     }
 }
-
-// 버튼 클릭 시 register 함수 호출
 document.getElementById("joinOkBtn").addEventListener("click", register());
+
+
+/*
+* 아이디 중복체크 PART
+*/
+var ischeckedId = false;
+
+function idck() {
+  var id = document.getElementById("userId");
+
+  if (id.value == "") {
+    alert("아이디를 입력해주세요.");
+    id.focus();
+  } else {
+    fetch(`../member/check-userId/${id.value}`, {
+      method: "GET",
+    })
+    .then(response => response.text())
+    .then(data => {
+    console.log(data);
+      if (data === "canuse") {
+        alert("사용가능한 아이디 입니다.");
+        ischeckedId = true;
+        id.readOnly = true;
+      } else if (data === "nouse") {
+        alert("이미 사용중인 아이디입니다.");
+      }
+    })
+    .catch(error => {
+      console.error("Error during username check:", error);
+    });
+  }
+}
