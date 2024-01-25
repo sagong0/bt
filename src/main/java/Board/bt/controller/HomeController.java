@@ -11,12 +11,8 @@ public class HomeController {
     private final MemberRepository memberRepository;
     @GetMapping("/")
     public String mainPage(){
-        memberRepository.findAll();
         return "index";
     }
 
-    @GetMapping("/board/write")
-    public String boardFormCreate(){
-        return "board/boardForm";
-    }
+
 }

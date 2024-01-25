@@ -16,8 +16,8 @@ public class BoardRepositoryImpl implements BoardRepository {
     private final BoardMapper boardMapper;
 
     @Override
-    public Board saveBoard(Board board) {
-        return boardMapper.saveBoard(board);
+    public void saveBoard(Board board) {
+        boardMapper.saveBoard(board);
     }
 
     @Override
