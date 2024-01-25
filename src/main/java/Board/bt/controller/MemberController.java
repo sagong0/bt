@@ -33,12 +33,14 @@ public class MemberController {
         log.info("Member = {}", member);
 
         if(!StringUtils.hasText(member.getUserId()) || !member.getUserId().matches("^[가-힣]*$")){
-            bindingResult
-                    .addError(new FieldError("member","userId",member.getUserId(),false,null,null,"사용자 아이디를 확인해주세요."));
+//            bindingResult
+//                    .addError(new FieldError("member","userId",member.getUserId(),false,new String[]{"required.member.userId"},null,null));
+            bindingResult.rejectValue("userId","noHanguel");
         }
         if(member.getAge() == 0 || member.getAge() > 100){
-            bindingResult
-                    .addError(new FieldError("member", "age",member.getAge(), false, null,null,"100살 아래만 가입 가능합니다."));
+//            bindingResult
+//                    .addError(new FieldError("member", "age",member.getAge(), false, new String[]{"max.member.age"},new Object[]{100},null));
+            bindingResult.rejectValue("age","max",new Object[]{100}, null);
         }
 
         if(bindingResult.hasErrors()){

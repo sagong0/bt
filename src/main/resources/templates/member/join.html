@@ -23,6 +23,9 @@
             <td>
               <input class="form-control" type="text" th:field="*{userId}"
                      maxlength="20" placeholder="아이디를 입력해주세요."/>
+              <div>
+                <p class="field-error" th:errors="*{userId}">아이디 오류</p>
+              </div>
             </td>
             <td style="width:110px;">
               <button type="button" class="btn btn-primary btn-sm" onclick="">중복확인</button>
