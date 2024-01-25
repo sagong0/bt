@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    // 회원가입 validation
+
     // 회원가입
     public int join(Member member){
+
        return this.memberRepository.save(member);
     }
 }

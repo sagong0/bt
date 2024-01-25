@@ -32,9 +32,9 @@ public class MemberController {
     public String memberForm(@Validated @ModelAttribute Member member, BindingResult bindingResult){
         log.info("Member = {}", member);
 
-        if(!StringUtils.hasText(member.getUserId())){
+        if(!StringUtils.hasText(member.getUserId()) || !member.getUserId().matches("^[가-힣]*$")){
             bindingResult
-                    .addError(new FieldError("member","userId",member.getUserId(),false,null,null,"사용자 이름을 입력해주세요."));
+                    .addError(new FieldError("member","userId",member.getUserId(),false,null,null,"사용자 아이디를 확인해주세요."));
         }
         if(member.getAge() == 0 || member.getAge() > 100){
             bindingResult
