@@ -21,7 +21,6 @@ public class MemberRepositoryImpl implements MemberRepository{
     @Override
     public List<Member> findAll() {
         List<Member> members = memberMapper.findAll();
-        System.out.println(members);
         return members;
     }
 

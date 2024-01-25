@@ -17,12 +17,12 @@ public class BoardRepositoryImpl implements BoardRepository {
 
     @Override
     public void saveBoard(Board board) {
-        boardMapper.saveBoard(board);
+         boardMapper.saveBoard(board);
     }
 
     @Override
     public List<Board> findAllBoard(BoardSearchCond cond) {
-        return null;
+        return boardMapper.findAllBoard(cond);
     }
 
     @Override

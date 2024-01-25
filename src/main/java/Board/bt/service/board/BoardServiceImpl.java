@@ -21,7 +21,9 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public List<Board> findAllBoard(BoardSearchCond cond) {
-        return null;
+
+
+        return boardRepository.findAllBoard(cond);
     }
 
     @Override
