@@ -28,6 +28,7 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 	implementation 'mysql:mysql-connector-java:8.0.32'
 	implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
+	runtimeOnly('org.springframework.boot:spring-boot-devtools')
 	implementation group: 'commons-net', name: 'commons-net', version: '3.9.0'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'

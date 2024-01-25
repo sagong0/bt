@@ -11,7 +11,7 @@ public class HomeController {
     private final MemberRepository memberRepository;
     @GetMapping("/")
     public String mainPage(){
-        return "index";
+        return "board/boardList";
     }
 
 
