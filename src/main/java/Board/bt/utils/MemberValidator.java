@@ -18,7 +18,7 @@ public class MemberValidator implements Validator {
     public void validate(Object target, Errors errors) {
         Member member = (Member) target;
 
-        if(!StringUtils.hasText(member.getUserId()) || !member.getUserId().matches("^[가-힣]*$")){
+        if(!StringUtils.hasText(member.getUserId()) || member.getUserId().length() < 5){
 //            bindingResult
 //                    .addError(new FieldError("member","userId",member.getUserId(),false,new String[]{"required.member.userId"},null,null));
             errors.rejectValue("userId","noHanguel");

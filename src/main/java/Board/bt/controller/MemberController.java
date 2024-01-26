@@ -21,12 +21,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MemberController {
 
     private final MemberService memberService;
+
+    /*
+    **** Spring Validation 사용 한 코드. **** (Bean Validation으로 대체할거라 주석)
     private final MemberValidator memberValidator;
 
     @InitBinder
     public void init(WebDataBinder dataBinder){
         dataBinder.addValidators(memberValidator);
     }
+    */
 
     @GetMapping("/member/add")
     public String memberFormCreate(Model model){
