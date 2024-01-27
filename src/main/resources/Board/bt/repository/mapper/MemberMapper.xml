@@ -3,8 +3,8 @@
 <mapper namespace="Board.bt.repository.mapper.MemberMapper">
 
     <insert id="save" parameterType="Board.bt.domain.Member" useGeneratedKeys="true" keyProperty="idx">
-        INSERT INTO Members (userId, userPw, username, age, gender, email, point, profileImgUrl, createdAt)
-        VALUES (#{userId}, #{userPw}, #{username}, #{age}, #{gender}, #{email}, 100, '', NOW())
+        INSERT INTO Members
+        VALUES ('0', #{userId}, #{userPw}, #{username}, #{age}, #{gender}, #{email}, 100, '', NOW())
     </insert>
 
 
@@ -17,4 +17,12 @@
         select * from Members
         where userId = #{userId}
     </select>
+
+    <!-- idx로 회원찾기 !-->
+    <select id="findByIdx">
+        select * from Members
+        where midx = #{midx}
+    </select>
+
+
 </mapper>

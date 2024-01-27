@@ -28,5 +28,10 @@ public class MemberValidator implements Validator {
 //                    .addError(new FieldError("member", "age",member.getAge(), false, new String[]{"max.member.age"},new Object[]{100},null));
             errors.rejectValue("age","max",new Object[]{100}, null);
         }
+
+        if(member == null){
+            errors
+                    .reject("loginFail", "아이디 또는 패스워드를 확인해주세요.2222");
+        }
     }
 }

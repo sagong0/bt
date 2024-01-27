@@ -12,4 +12,6 @@ public interface MemberMapper {
     List<Member> findAll();
 
     Optional<Member> findOneByUserId(String userId);
+
+    Optional<Member> findByIdx(Long idx);
 }

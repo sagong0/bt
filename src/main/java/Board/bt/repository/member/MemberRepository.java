@@ -13,4 +13,6 @@ public interface MemberRepository {
     List<Member> findAll();
 
     Optional<Member> findOneByUserId(String userId);
+
+    Optional<Member> findByIdx(Long midx);
 }

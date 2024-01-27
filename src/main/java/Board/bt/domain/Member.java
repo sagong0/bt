@@ -3,6 +3,7 @@ package Board.bt.domain;
 import Board.bt.domain.enums.MemberRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,13 +14,15 @@ import java.time.LocalDateTime;
 
 @Getter @Setter @ToString
 public class Member {
-    private Long idx;
+    private Long midx;
 
     @Size(min = 5, max = 10)
     @NotBlank(message = "사용자 아이디를 확인해주세요.")
     private String userId;
 
+    @NotEmpty
     private String userPw;
+    @NotEmpty
     private String username;
 
     @Range(min = 20, max = 100)
@@ -32,4 +35,5 @@ public class Member {
     private int point;
     private String profileImgUrl;
     private LocalDateTime createdAt;
+
 }

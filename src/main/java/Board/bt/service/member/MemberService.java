@@ -23,15 +23,16 @@ public class MemberService {
     // 아이디 중복체크
     public String userIdCheck(String userId){
         Optional<Member> findMember = this.memberRepository.findOneByUserId(userId);
-
-//        log.info("findMember = {}", findMember.get());
-
         if(findMember.isEmpty()){
             // 사용 가능한 아이디
             return "canuse";
         } else{
             return "nouse";
         }
+    }
 
+    // idx 로 User 찾기
+    public Optional<Member> findUserByIdx(Long idx){
+        return memberRepository.findByIdx(idx);
     }
 }

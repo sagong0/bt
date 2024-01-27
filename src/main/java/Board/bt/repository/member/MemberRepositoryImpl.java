@@ -21,13 +21,20 @@ public class MemberRepositoryImpl implements MemberRepository{
 
     @Override
     public List<Member> findAll() {
-        List<Member> members = memberMapper.findAll();
-        return members;
+        return memberMapper.findAll();
     }
 
     @Override
     public Optional<Member> findOneByUserId(String userId) {
         return memberMapper.findOneByUserId(userId);
+//        return findAll().stream()
+//                .filter(m -> m.getUserId().equals(userId))
+//                .findFirst();
+    }
+
+    @Override
+    public Optional<Member> findByIdx(Long idx) {
+        return memberMapper.findByIdx(idx);
     }
 
 }
