@@ -25,7 +25,6 @@ public class MemberController {
     Spring Validation 사용 한 코드. **** (Bean Validation 으로 대체할거라 주석)
     private final MemberValidator memberValidator;
          */
-
     /*@InitBinder
     public void init(WebDataBinder dataBinder){
         dataBinder.addValidators(memberValidator);
@@ -84,12 +83,25 @@ public class MemberController {
         return "redirect:/";
     }
 
+    @PostMapping("/member/logout")
+    public String logoutMember(HttpServletResponse response){
+        log.info("hrerererererer----");
+        expiredCookie(response, "memberId");
+        return "redirect:/";
+    }
+
 
     /**
      * 편의 메소드
      */
     private void setCookie(HttpServletResponse response, Member loginMember) {
         Cookie cookie = new Cookie("memberId", String.valueOf(loginMember.getMidx()));
+        cookie.setPath("/");
+        response.addCookie(cookie);
+    }
+    private void expiredCookie(HttpServletResponse response, String cookieName) {
+        Cookie cookie = new Cookie(cookieName, null);
+        cookie.setMaxAge(0);
         cookie.setPath("/");
         response.addCookie(cookie);
     }
