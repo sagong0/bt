@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+
+<head th:replace="~{fragments/loginHeader :: header_head}"/>
+<nav th:replace="~{fragments/loginHeader :: header_nav}"/>
+<style>
+    .field-error {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+
+</style>
+<body>
+<div class="container">
+  <h2>회원정보 수정</h2>
+  <div class="panel panel-default">
+    <div class="panel-heading">회원정보 수정</div>
+    <div class="panel-body">
+      <form th:object="${member}" th:action method="post">
+        <input type="hidden" th:field="*{midx}"/> <!-- 회원 식별을 위한 숨은 필드 추가 -->
+        <table class="table table-bordered" style="text-align: center; border: 1px soild #ddd;">
+          <tr>
+            <td style="width:110px; vertical-align: middle;">아이디</td>
+            <td>
+              <input class="form-control" type="text" th:field="*{userId}" readonly/>
+            </td>
+          </tr>
+          <!-- 기타 수정할 회원 정보들 추가 -->
+          <tr>
+            <td style="width:110px; vertical-align: middle;">사용자 이메일</td>
+            <td>
+              <input class="form-control" type="text" th:field="*{email}" readonly/>
+            </td>
+          </tr>
+          <!-- 권한 수정 -->
+          <tr>
+            <td style="width:110px; vertical-align: middle;">사용자 권한</td>
+            <td colspan="2">
+              <input type="checkbox" th:field="*{role}" name="role" value="ROLE_USER"> ROLE_USER
+              <input type="checkbox" th:field="*{role}" name="role" value="ROLE_MANAGER"> ROLE_MANAGER
+              <input type="checkbox" th:field="*{role}" name="role" value="ROLE_ADMIN"> ROLE_ADMIN
+            </td>
+          </tr>
+
+
+          <tr>
+            <td colspan="3" style="text-align: left;">
+              <span id="cpw_msg" style="color: red;"></span>
+              <input type="submit" class="btn btn-primary btn-sm pull-right" value="수정"/>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="panel-footer">푸터임</div>
+  </div>
+</div>
+</body>
+<script th:src="@{/js/header.js?v=1}"></script>
+</html>
