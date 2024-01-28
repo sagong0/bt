@@ -17,6 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -24,7 +27,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final LoginService loginService;
-    private final SessionManager sessionManager;
+//    private final SessionManager sessionManager;
 
         /*
     Spring Validation 사용 한 코드. **** (Bean Validation 으로 대체할거라 주석)
@@ -69,8 +72,10 @@ public class MemberController {
     }
 
     @PostMapping("/member/login")
-    public String memberLogin(@Validated @ModelAttribute("form") LoginForm form,
-                              BindingResult bindingResult, HttpServletRequest request){
+    public String memberLogin(
+            @Validated @ModelAttribute("form") LoginForm form,
+                              BindingResult bindingResult,
+            HttpServletRequest request){
         if(bindingResult.hasErrors()){
             return "member/loginForm";
         }
@@ -108,6 +113,19 @@ public class MemberController {
 
         return "redirect:/";
     }
+
+    @PostMapping("/member/edit")
+    public String editMemberForm(@RequestParam Long midx, Model model){
+        log.info("test midx = {}", midx);
+        Optional<Member> optionalMember = memberService.findUserByIdx(midx);
+        if(optionalMember.isEmpty()){
+            return "member/login";
+        }
+        // 성공 로직
+        model.addAttribute("member", optionalMember.get());
+        return "member/edit";
+    }
+
 
 
     /**

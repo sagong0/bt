@@ -13,11 +13,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
-
     // 회원가입
     public int join(Member member){
-
-       return this.memberRepository.save(member);
+        log.info("check here member = {}", member);
+        Member joinMember = new Member(member.getMidx(), member.getUserId(),member.getUserPw(),member.getUsername(),member.getAge(),member.getGender(),member.getEmail(),member.getRole(),member.getPoint(),member.getProfileImgUrl(),member.getCreatedAt());
+        return this.memberRepository.save(joinMember);
     }
 
     // 아이디 중복체크
