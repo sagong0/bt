@@ -3,16 +3,44 @@
 <mapper namespace="Board.bt.repository.mapper.BoardMapper">
     <insert id="saveBoard" useGeneratedKeys="true" keyProperty="idx">
        insert into post (title,content,board_like,dislike,count,file_url,filename,writer,member_id,created_at)
-        values (#{title},#{content},#{like},#{dislike},0,#{fileUrl},#{fileName},#{writer},#{memberId},now());
+        values (#{title},#{content},#{boardLike},#{dislike},0,#{fileUrl},#{fileName},#{writer},#{memberId},now());
     </insert>
+
     <select id="findBoardById" resultType="Board">
         select * from post where id = #{boardId}
     </select>
-    <select id="findAllBoard" resultType="Board">
-        select idx,title,board_like as boardLike,dislike,count,writer,date_format(created_at,'%Y,%m.%d') as createdAt from post
-        <where>
 
+    <select id="findAllBoard" parameterType="BoardSearchCond" resultType="Board">
+    SELECT idx,title,writer,date_format(created_at,'%Y.%m.%d') as createdAt,count,board_like as boardLike
+    FROM post
+    <where>
+        <if test="searchType != null and searchType != '' and searchType=='title'">
+            AND title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType != null and searchType != '' and searchType=='content'">
+            AND content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType != null and searchType != '' and searchType=='writer'">
+            AND writer LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </where>
+    ORDER BY idx DESC LIMIT #{startPage}, #{pageSize}
+    </select>
+    <select id="countBoard" parameterType="BoardSearchCond" resultType="int">
+    SELECT COUNT(*)
+    FROM post
+        <if test="keyword != null and keyword != ''">
+        <where>
+            <if test="searchType=='title'">
+                AND title LIKE  CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType=='content'">
+                AND content LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType=='writer'">
+                AND writer LIKE CONCAT('%', #{keyword}, '%')
+            </if>
         </where>
-        order by idx desc;
+        </if>
     </select>
 </mapper>

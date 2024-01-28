@@ -16,7 +16,9 @@ import java.util.Optional;
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
+
     private final MemberService memberService;
+
 
     @GetMapping("/")
     public String mainPage(@CookieValue(name = "memberId", required = false) Long memberId, Model model){

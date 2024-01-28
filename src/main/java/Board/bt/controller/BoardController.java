@@ -1,6 +1,7 @@
 package Board.bt.controller;
 
 import Board.bt.domain.Board;
+import Board.bt.domain.dto.BoardDto;
 import Board.bt.repository.board.BoardSearchCond;
 import Board.bt.service.CdnService;
 import Board.bt.service.board.BoardServiceImpl;
@@ -22,10 +23,13 @@ public class BoardController {
     private final CdnService cdnService;
 
     @GetMapping("/boardList")
-    public String boardList(Model model, BoardSearchCond cond) {
+    public String boardList(Model model,
+                            @ModelAttribute("cond") BoardSearchCond cond) {
         List<Board> boards = boardService.findAllBoard(cond);
-        model.addAttribute("boards",boards);
-        log.info("board1 = {}",boards.get(1));
+        model.addAttribute("boards", boards);
+        model.addAttribute("cond",cond);
+        System.out.println("searchType = "+cond.getSearchType());
+        System.out.println("keyword = "+cond.getKeyword());
         return "board/boardList";
     }
 
@@ -46,7 +50,6 @@ public class BoardController {
             board.setFileName(file.getOriginalFilename());
             boardService.saveBoard(board);
         }
-        log.info("createdBoard={}",board);
         return "redirect:/board/boardList";
     }
 }

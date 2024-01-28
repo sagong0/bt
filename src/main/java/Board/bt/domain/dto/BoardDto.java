@@ -1,15 +1,12 @@
-package Board.bt.domain;
+package Board.bt.domain.dto;
 
+import Board.bt.repository.board.BoardSearchCond;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-import java.time.LocalDateTime;
-
-@Getter @Setter @ToString
-
-public class Board {
+@Getter
+@Setter
+public class BoardDto extends BoardSearchCond {
     private Long idx;
     private String title;
     private String content;
@@ -21,4 +18,6 @@ public class Board {
     private String writer;
     private Long memberId;
     private String createdAt;
+    private BoardSearchCond boardSearchCond;
+
 }
