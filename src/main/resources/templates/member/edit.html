@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{header :: header_head}"/>
-<nav th:replace="~{header :: header_nav}"/>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+
+<head th:replace="~{fragments/loginHeader :: header_head}"/>
+<nav th:replace="~{fragments/loginHeader :: header_nav}"/>
 <style>
     .field-error {
         border-color: #dc3545;
         color: #dc3545;
     }
+
 </style>
 <body>
 <div class="container">
@@ -23,28 +27,23 @@
               <input class="form-control" type="text" th:field="*{userId}" readonly/>
             </td>
           </tr>
-          <tr>
-            <td style="width:110px; vertical-align: middle;">현재 비밀번호</td>
-            <td>
-              <input class="form-control" type="password" name="currentPassword" maxlength="20"
-                     placeholder="현재 비밀번호를 입력하세요."/>
-            </td>
-          </tr>
-          <tr>
-            <td style="width:110px; vertical-align: middle;">새로운 비밀번호</td>
-            <td>
-              <input class="form-control" type="password" name="newPassword" maxlength="20"
-                     placeholder="새로운 비밀번호를 입력하세요."/>
-            </td>
-          </tr>
-          <tr>
-            <td style="width:110px; vertical-align: middle;">비밀번호 확인</td>
-            <td>
-              <input class="form-control" type="password" name="confirmPassword" maxlength="20"
-                     placeholder="비밀번호를 확인하세요."/>
-            </td>
-          </tr>
           <!-- 기타 수정할 회원 정보들 추가 -->
+          <tr>
+            <td style="width:110px; vertical-align: middle;">사용자 이메일</td>
+            <td>
+              <input class="form-control" type="text" th:field="*{email}" readonly/>
+            </td>
+          </tr>
+          <!-- 권한 수정 -->
+          <tr>
+            <td style="width:110px; vertical-align: middle;">사용자 권한</td>
+            <td colspan="2">
+              <input type="checkbox" th:field="*{role}" name="role" value="ROLE_USER"> ROLE_USER
+              <input type="checkbox" th:field="*{role}" name="role" value="ROLE_MANAGER"> ROLE_MANAGER
+              <input type="checkbox" th:field="*{role}" name="role" value="ROLE_ADMIN"> ROLE_ADMIN
+            </td>
+          </tr>
+
 
           <tr>
             <td colspan="3" style="text-align: left;">
@@ -59,5 +58,5 @@
   </div>
 </div>
 </body>
-<script th:src="@{/js/member.js}"></script>
+<script th:src="@{/js/header.js?v=1}"></script>
 </html>

@@ -36,20 +36,4 @@ public class Member {
     private String profileImgUrl;
     private LocalDateTime createdAt;
 
-    public Member() {
-    }
-
-    public Member(Long midx, String userId, String userPw, String username, int age, String gender, String email, MemberRole role, int point, String profileImgUrl, LocalDateTime createdAt) {
-        this.midx = midx;
-        this.userId = userId;
-        this.userPw = userPw;
-        this.username = username;
-        this.age = age;
-        this.gender = gender;
-        this.email = email;
-        this.role = role;
-        this.point = point;
-        this.profileImgUrl = profileImgUrl;
-        this.createdAt = createdAt;
-    }
 }

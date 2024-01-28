@@ -9,10 +9,11 @@ function logoutMember() {
 
 
 /** 회원정보 수정 PART **/
+
 function member_edit(midx){
   var form = document.createElement("form");
 
-  form.setAttribute("method", "POST");
+  form.setAttribute("method", "GET");
   form.setAttribute("action", `/member/edit`);
 
   var input = document.createElement("input");

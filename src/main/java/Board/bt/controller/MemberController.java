@@ -2,6 +2,7 @@ package Board.bt.controller;
 
 import Board.bt.domain.Member;
 import Board.bt.domain.form.LoginForm;
+import Board.bt.exception.NoSuchIdxException;
 import Board.bt.repository.member.LoginService;
 import Board.bt.service.member.MemberService;
 import Board.bt.utils.session.SessionConst;
@@ -74,8 +75,7 @@ public class MemberController {
     @PostMapping("/member/login")
     public String memberLogin(
             @Validated @ModelAttribute("form") LoginForm form,
-                              BindingResult bindingResult,
-            HttpServletRequest request){
+                              BindingResult bindingResult, HttpServletRequest request){
         if(bindingResult.hasErrors()){
             return "member/loginForm";
         }
@@ -114,9 +114,17 @@ public class MemberController {
         return "redirect:/";
     }
 
+    @GetMapping("/member/edit")
+    public String editMemberFormCreate(@RequestParam Long midx,HttpServletRequest request ,Model model){
+        return check_session(midx, request, model);
+    }
+
+
+
+
+    /*
     @PostMapping("/member/edit")
     public String editMemberForm(@RequestParam Long midx, Model model){
-        log.info("test midx = {}", midx);
         Optional<Member> optionalMember = memberService.findUserByIdx(midx);
         if(optionalMember.isEmpty()){
             return "member/login";
@@ -125,12 +133,11 @@ public class MemberController {
         model.addAttribute("member", optionalMember.get());
         return "member/edit";
     }
+    */
 
 
 
-    /**
-     * 편의 메소드
-     */
+    /** 편의 메소드 **/
     private void setCookie(HttpServletResponse response, Member loginMember) {
         Cookie cookie = new Cookie("memberId", String.valueOf(loginMember.getMidx()));
         cookie.setPath("/");
@@ -141,6 +148,27 @@ public class MemberController {
         cookie.setMaxAge(0);
         cookie.setPath("/");
         response.addCookie(cookie);
+    }
+
+    // 페이지 강제접근 차단
+    private String check_session(Long midx, HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        Member sessionMember =(Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
+
+        Optional<Member> optionalMember = memberService.findUserByIdx(midx);
+
+        if(!sessionMember.getMidx().equals(midx)){
+            // TODO 이 부분 예외 처리 해야할 것.
+            throw new RuntimeException("잘못된 접근방법입니다.");
+        }
+
+        if(optionalMember.isEmpty()){
+            // TODO 이 부분 예외 처리 해야할 것.
+            throw new RuntimeException("잘못된 접근방법입니다.2222");
+        }
+        // 성공 로직
+        model.addAttribute("member", optionalMember.get());
+        return "member/edit";
     }
 }
 
