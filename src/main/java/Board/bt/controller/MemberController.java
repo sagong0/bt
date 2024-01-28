@@ -4,7 +4,9 @@ import Board.bt.domain.Member;
 import Board.bt.domain.form.LoginForm;
 import Board.bt.repository.member.LoginService;
 import Board.bt.service.member.MemberService;
+import Board.bt.utils.session.SessionManager;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,12 +22,13 @@ public class MemberController {
 
     private final MemberService memberService;
     private final LoginService loginService;
+    private final SessionManager sessionManager;
 
         /*
     Spring Validation 사용 한 코드. **** (Bean Validation 으로 대체할거라 주석)
     private final MemberValidator memberValidator;
          */
-    /*@InitBinder
+     /*@InitBinder
     public void init(WebDataBinder dataBinder){
         dataBinder.addValidators(memberValidator);
     }*/
@@ -79,14 +82,17 @@ public class MemberController {
         }
 
         // 성공 로직 TODO! (일단 홈으로 보내놈)
-        setCookie(response, loginMember);
+        // setCookie(response, loginMember);  // 쿠키만 사용해본거
+
+        // 직접 만든 세션 적용
+        sessionManager.createSession(loginMember,response);
         return "redirect:/";
     }
 
     @PostMapping("/member/logout")
-    public String logoutMember(HttpServletResponse response){
-        log.info("hrerererererer----");
-        expiredCookie(response, "memberId");
+    public String logoutMember(HttpServletRequest request){
+//        expiredCookie(response, "memberId");  // 쿠키만 사용했을때
+        sessionManager.expireSession(request);
         return "redirect:/";
     }
 
