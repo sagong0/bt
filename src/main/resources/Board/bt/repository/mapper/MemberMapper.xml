@@ -1,10 +1,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Board.bt.repository.mapper.MemberMapper">
-    <insert id="save" useGeneratedKeys="true" keyProperty="idx">
 
+    <insert id="save" parameterType="Board.bt.domain.Member" useGeneratedKeys="true" keyProperty="idx">
+        INSERT INTO Members
+        VALUES ('0', #{userId}, #{userPw}, #{username}, #{age}, #{gender}, #{email}, 100, '', NOW())
     </insert>
+
+
     <select id="findAll" resultType="Board.bt.domain.Member">
-        select * from Member;
+        select * from Members;
     </select>
+
+    <!-- userId로 한명 찾기 !-->
+    <select id="findOneByUserId" parameterType="String" resultType="Board.bt.domain.Member">
+        select * from Members
+        where userId = #{userId}
+    </select>
+
+    <!-- idx로 회원찾기 !-->
+    <select id="findByIdx">
+        select * from Members
+        where midx = #{midx}
+    </select>
+
+
 </mapper>

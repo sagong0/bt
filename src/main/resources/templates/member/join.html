@@ -4,6 +4,12 @@
 <header th:replace="~{header :: header_head}"/>
 <!-- 네비게이션 바 -->
 <nav th:replace="~{header :: header_nav}"/>
+<style>
+  .field-error{
+          border-color : #dc3545;
+          color : #dc3545;
+         }
+</style>
 <body>
 <div class="container">
   <h2>회원가입</h2>
@@ -17,9 +23,12 @@
             <td>
               <input class="form-control" type="text" th:field="*{userId}"
                      maxlength="20" placeholder="아이디를 입력해주세요."/>
+              <div>
+                <p class="field-error" th:errors="*{userId}">아이디 오류</p>
+              </div>
             </td>
             <td style="width:110px;">
-              <button type="button" class="btn btn-primary btn-sm" onclick="">중복확인</button>
+              <button type="button" class="btn btn-primary btn-sm" th:onclick="|idck()|">중복확인</button>
             </td>
           </tr>
           <tr>
@@ -44,8 +53,11 @@
           <tr>
             <td style="width:110px; vertical-align: middle;">나이</td>
             <td colspan="2">
-              <input th:field="*{age}" class="form-control" type="text"
+              <input th:field="*{age}" class="form-control" th:errorclass="field-error" type="text"
                                    maxlength="20" placeholder="나이를 입력하세요."/>
+              <div>
+                <p class="field-error" th:errors="*{age}">나이 오류</p>
+              </div>
             </td>
           </tr>
           <tr>
@@ -54,10 +66,10 @@
               <div class="form-group" style="text-align:center; margin: 0 auto;">
                 <div class="btn-group" data-toggle="buttons">
                   <label class="btn btn-primary active">
-                    <input type="radio" autocomplete="off" th:field="*{gender}" value="남자" checked/>남자
+                    <input type="radio" autocomplete="off" th:field="*{gender}" value="M" checked/>남자
                   </label>
                   <label class="btn btn-primary">
-                    <input type="radio" autocomplete="off" th:field="*{gender}" value="여자"/>여자
+                    <input type="radio" autocomplete="off" th:field="*{gender}" value="W"/>여자
                   </label>
                 </div>
               </div>

@@ -4,9 +4,14 @@ import Board.bt.domain.Member;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface MemberMapper {
-    void save(Member member);
+    int save(Member member);
     List<Member> findAll();
+
+    Optional<Member> findOneByUserId(String userId);
+
+    Optional<Member> findByIdx(Long idx);
 }
