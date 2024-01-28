@@ -30,7 +30,6 @@ public class HomeController {
         if(optionalMember.isEmpty()){
             return "home";
         }
-
         // 성공 로직 !
         model.addAttribute("member", optionalMember.get());
         return "loginHome";

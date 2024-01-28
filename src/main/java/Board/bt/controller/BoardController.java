@@ -28,8 +28,6 @@ public class BoardController {
         List<Board> boards = boardService.findAllBoard(cond);
         model.addAttribute("boards", boards);
         model.addAttribute("cond",cond);
-        System.out.println("searchType = "+cond.getSearchType());
-        System.out.println("keyword = "+cond.getKeyword());
         return "board/boardList";
     }
 
