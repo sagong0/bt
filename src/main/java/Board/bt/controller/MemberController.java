@@ -4,10 +4,12 @@ import Board.bt.domain.Member;
 import Board.bt.domain.form.LoginForm;
 import Board.bt.repository.member.LoginService;
 import Board.bt.service.member.MemberService;
+import Board.bt.utils.session.SessionConst;
 import Board.bt.utils.session.SessionManager;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -68,7 +70,7 @@ public class MemberController {
 
     @PostMapping("/member/login")
     public String memberLogin(@Validated @ModelAttribute("form") LoginForm form,
-                              BindingResult bindingResult, HttpServletResponse response){
+                              BindingResult bindingResult, HttpServletRequest request){
         if(bindingResult.hasErrors()){
             return "member/loginForm";
         }
@@ -81,18 +83,29 @@ public class MemberController {
             return "member/loginForm";
         }
 
-        // 성공 로직 TODO! (일단 홈으로 보내놈)
-        // setCookie(response, loginMember);  // 쿠키만 사용해본거
+        /** 쿠키만 사용해본 코드 **/
+        // setCookie(response, loginMember);
 
-        // 직접 만든 세션 적용
-        sessionManager.createSession(loginMember,response);
+        /****  직접 만든 세션 적용 코드 *****/
+        //sessionManager.createSession(loginMember,response);
+
+        /**** Servlet 제공 HttpSession 사용 코드 *****/
+        // 세션 있으면 기존 세션, 없으면 새로운 세션 반환  : default(true)  // false null 반환
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+        // 성공 로직 TODO! (일단 홈으로 보내놈)
         return "redirect:/";
     }
 
     @PostMapping("/member/logout")
     public String logoutMember(HttpServletRequest request){
 //        expiredCookie(response, "memberId");  // 쿠키만 사용했을때
-        sessionManager.expireSession(request);
+//        sessionManager.expireSession(request);    // 직접 만든 세션 코드
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
+
         return "redirect:/";
     }
 

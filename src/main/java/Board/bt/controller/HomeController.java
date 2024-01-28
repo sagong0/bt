@@ -2,9 +2,11 @@ package Board.bt.controller;
 
 import Board.bt.domain.Member;
 import Board.bt.service.member.MemberService;
+import Board.bt.utils.session.SessionConst;
 import Board.bt.utils.session.SessionManager;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -46,6 +48,7 @@ public class HomeController {
     /**
      * 직접 만든 SessionManager 적용 코드
      */
+    /*
     @GetMapping("/")
     public String mainPage(HttpServletRequest request, Model model){
         // 세션 매니저에 저장된 객체 조회
@@ -56,6 +59,23 @@ public class HomeController {
         }
 
         model.addAttribute("member", member_session);
+        return "loginHome";
+    }
+     */
+
+    /**
+     * HttpSession 사용
+     */
+    @GetMapping("/")
+    public String mainPage(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession(false);
+        if(session == null){
+            return "home";
+        }
+
+        Member loginMember = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
+        model.addAttribute("member", loginMember);
+
         return "loginHome";
     }
 }
