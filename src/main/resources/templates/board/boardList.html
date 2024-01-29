@@ -64,7 +64,8 @@
     <a th:if="${cond.currentPageNo != null and cond.currentPageNo > 1}" th:href="@{'/board/boardList?page=' + ${cond.currentPageNo - 1} + '&size=' + ${cond.pageSize}+ '&searchType=' + ${cond.searchType}+ '&keyword=' + ${cond.keyword}}">&lt;</a>
   </li>
   <li th:each="pageNum : ${#numbers.sequence(1, cond.totalPages)}" th:class="${pageNum == cond.currentPageNo} ? 'active'">
-    <a th:if="${pageNum != cond.currentPageNo}" th:href="@{'/board/boardList?currentPageNo=' + ${pageNum} + '&size=' + ${cond.pageSize}}+ '&searchType=' + ${cond.searchType}+'&keyword='+${cond.keyword}" th:text="${pageNum}"></a>
+    <a th:if="${pageNum != cond.currentPageNo}"
+       th:href="@{'/board/boardList?currentPageNo=' + ${pageNum} + '&size=' + ${cond.pageSize}}+ '&searchType=' + ${cond.searchType}+'&keyword='+${cond.keyword}" th:text="${pageNum}"></a>
     <span th:if="${pageNum == cond.currentPageNo}" th:text="${pageNum}"></span>
   </li>
   <li th:if="${cond.currentPageNo < cond.totalPages}">
