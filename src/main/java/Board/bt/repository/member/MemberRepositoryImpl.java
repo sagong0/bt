@@ -1,13 +1,16 @@
 package Board.bt.repository.member;
 
 import Board.bt.domain.Member;
+import Board.bt.domain.form.MemberEditForm;
 import Board.bt.repository.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Repository
 @RequiredArgsConstructor
 public class MemberRepositoryImpl implements MemberRepository{
@@ -38,7 +41,9 @@ public class MemberRepositoryImpl implements MemberRepository{
     }
 
     @Override
-    public int updateMember(Long midx) {
-        return memberMapper.updateMember(midx);
+    public int updateMember(MemberEditForm editForm) {
+        return memberMapper.updateMember(editForm);
     }
+
+
 }

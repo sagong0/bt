@@ -26,6 +26,7 @@
     </where>
     ORDER BY idx DESC LIMIT #{startPage}, #{pageSize}
     </select>
+
     <select id="countBoard" parameterType="BoardSearchCond" resultType="int">
     SELECT COUNT(*)
     FROM post

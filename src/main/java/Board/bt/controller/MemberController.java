@@ -125,18 +125,14 @@ public class MemberController {
     @PostMapping("/member/edit")
     public String editMemberForm(
             @Validated @ModelAttribute("member") MemberEditForm editForm,BindingResult bindingResult,Model model){
+
         if(bindingResult.hasErrors()){
             return "member/edit";
         }
 
         // 성공 로직
-        try{
-            log.info("editForm = {}", editForm);
-            memberService.updateMember(editForm);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+        log.info("editForm = {}", editForm);
+        memberService.updateMember(editForm);
         return "redirect:/";
     }
 
