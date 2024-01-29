@@ -13,5 +13,6 @@ public interface BoardRepository {
     List<Board> findAllBoard(BoardSearchCond cond);
     Optional<Board> findBoardById(Long boardId);
     int getTotalCount(BoardSearchCond cond);
+    void updateCount(Long boardId);
 
 }
