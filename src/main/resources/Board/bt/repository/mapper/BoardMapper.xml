@@ -43,4 +43,7 @@
         </where>
         </if>
     </select>
+    <update id="updateCount" parameterType="int">
+        update post set count = ++1 where idx = #{boardId}
+    </update>
 </mapper>

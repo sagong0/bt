@@ -12,4 +12,5 @@ public interface BoardService {
     List<Board> findAllBoard(BoardSearchCond cond);
     int getTotalCount(BoardSearchCond cond);
     Optional<Board> findBoardById(Long boardId);
+    void updateCount(Long boardId);
 }

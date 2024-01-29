@@ -14,5 +14,6 @@ public interface BoardMapper {
     List<Board> findAllBoard(BoardSearchCond cond);
     int countBoard(BoardSearchCond cond);
     Optional<Board> findBoardById(Long boardId);
+    void updateCount(Long boardId);
 
 }

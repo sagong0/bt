@@ -39,4 +39,10 @@ public class BoardServiceImpl implements BoardService {
     public Optional<Board> findBoardById(Long boardId) {
         return boardRepository.findBoardById(boardId);
     }
+
+    //조회수 증가
+    @Override
+    public void updateCount(Long boardId) {
+        boardRepository.updateCount(boardId);
+    }
 }

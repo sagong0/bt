@@ -34,4 +34,9 @@ public class BoardRepositoryImpl implements BoardRepository {
     public int getTotalCount(BoardSearchCond cond) {
         return boardMapper.countBoard(cond);
     }
+
+    @Override
+    public void updateCount(Long boardId) {
+        boardMapper.updateCount(boardId);
+    }
 }
