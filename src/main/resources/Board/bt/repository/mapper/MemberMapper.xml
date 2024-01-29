@@ -19,10 +19,16 @@
     </select>
 
     <!-- idx로 회원찾기 !-->
-    <select id="findByIdx">
+    <select id="findByIdx" resultType="Board.bt.domain.Member">
         select * from Members
         where midx = #{midx}
     </select>
+
+    <update id="updateMember" parameterType="Board.bt.domain.form.MemberEditForm">
+        UPDATE Members
+        SET email = #{email}, age = #{age}
+        WHERE midx = #{midx}
+    </update>
 
 
 </mapper>

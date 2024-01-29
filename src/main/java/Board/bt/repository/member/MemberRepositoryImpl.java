@@ -37,4 +37,8 @@ public class MemberRepositoryImpl implements MemberRepository{
         return memberMapper.findByIdx(idx);
     }
 
+    @Override
+    public int updateMember(Long midx) {
+        return memberMapper.updateMember(midx);
+    }
 }

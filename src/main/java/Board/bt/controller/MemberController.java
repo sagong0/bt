@@ -2,6 +2,7 @@ package Board.bt.controller;
 
 import Board.bt.domain.Member;
 import Board.bt.domain.form.LoginForm;
+import Board.bt.domain.form.MemberEditForm;
 import Board.bt.exception.NoSuchIdxException;
 import Board.bt.repository.member.LoginService;
 import Board.bt.service.member.MemberService;
@@ -121,19 +122,23 @@ public class MemberController {
 
 
 
-
-    /*
     @PostMapping("/member/edit")
-    public String editMemberForm(@RequestParam Long midx, Model model){
-        Optional<Member> optionalMember = memberService.findUserByIdx(midx);
-        if(optionalMember.isEmpty()){
-            return "member/login";
+    public String editMemberForm(
+            @Validated @ModelAttribute("member") MemberEditForm editForm,BindingResult bindingResult,Model model){
+        if(bindingResult.hasErrors()){
+            return "member/edit";
         }
+
         // 성공 로직
-        model.addAttribute("member", optionalMember.get());
-        return "member/edit";
+        try{
+            log.info("editForm = {}", editForm);
+            memberService.updateMember(editForm);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return "redirect:/";
     }
-    */
 
 
 
@@ -164,7 +169,7 @@ public class MemberController {
 
         if(optionalMember.isEmpty()){
             // TODO 이 부분 예외 처리 해야할 것.
-            throw new RuntimeException("잘못된 접근방법입니다.2222");
+            throw new RuntimeException("잘못된 접근방법입니다.22");
         }
         // 성공 로직
         model.addAttribute("member", optionalMember.get());

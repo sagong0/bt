@@ -20,6 +20,12 @@
     <div class="panel-body">
       <form th:object="${member}" th:action method="post">
         <input type="hidden" th:field="*{midx}"/> <!-- 회원 식별을 위한 숨은 필드 추가 -->
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+          <p class="field-error"
+             th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메세지 출력</p>
+        </div>
+
         <table class="table table-bordered" style="text-align: center; border: 1px soild #ddd;">
           <tr>
             <td style="width:110px; vertical-align: middle;">아이디</td>
@@ -31,9 +37,24 @@
           <tr>
             <td style="width:110px; vertical-align: middle;">사용자 이메일</td>
             <td>
-              <input class="form-control" type="text" th:field="*{email}" readonly/>
+              <input class="form-control" type="text" th:field="*{email}"/>
+              <div>
+                <p class="field-error" th:errors="*{email}">이메일 오류</p>
+              </div>
             </td>
           </tr>
+
+          <tr>
+            <td style="width:110px; vertical-align: middle;">나이</td>
+            <td>
+              <input class="form-control" th:errorclass="field-error"
+                     type="text" th:field="*{age}" />
+              <div>
+                <p class="field-error" th:errors="*{age}">나이 오류</p>
+              </div>
+            </td>
+          </tr>
+
           <!-- 권한 수정 -->
           <tr>
             <td style="width:110px; vertical-align: middle;">사용자 권한</td>

@@ -14,4 +14,6 @@ public interface MemberMapper {
     Optional<Member> findOneByUserId(String userId);
 
     Optional<Member> findByIdx(Long idx);
+
+    int updateMember(Long idx);
 }

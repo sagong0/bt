@@ -15,4 +15,6 @@ public interface MemberRepository {
     Optional<Member> findOneByUserId(String userId);
 
     Optional<Member> findByIdx(Long midx);
+
+    int updateMember(Long midx);
 }

@@ -1,6 +1,7 @@
 package Board.bt.service.member;
 
 import Board.bt.domain.Member;
+import Board.bt.domain.form.MemberEditForm;
 import Board.bt.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +16,6 @@ public class MemberService {
     private final MemberRepository memberRepository;
     // 회원가입
     public int join(Member member){
-        log.info("check here member = {}", member);
         return this.memberRepository.save(member);
     }
 
@@ -33,5 +33,9 @@ public class MemberService {
     // idx 로 User 찾기
     public Optional<Member> findUserByIdx(Long idx){
         return memberRepository.findByIdx(idx);
+    }
+
+    public int updateMember(MemberEditForm memberEdit) {
+        return memberRepository.updateMember(memberEdit.getMidx());
     }
 }

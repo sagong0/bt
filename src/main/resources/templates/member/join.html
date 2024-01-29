@@ -18,6 +18,7 @@
     <div class="panel-body">
       <form th:object="${member}" th:action method="post" id="mf">
         <table class="table table-bordered" style="text-align: center; border: 1px soild #ddd;">
+          <input type="hidden" th:field="*{midx}" value="${member.midx}" />
           <tr>
             <td style="width:110px; vertical-align: middle;">아이디</td>
             <td>
