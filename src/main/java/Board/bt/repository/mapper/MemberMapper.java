@@ -15,5 +15,5 @@ public interface MemberMapper {
 
     Optional<Member> findByIdx(Long idx);
 
-    int updateMember(Long idx);
+    void updateMember(Long idx);
 }

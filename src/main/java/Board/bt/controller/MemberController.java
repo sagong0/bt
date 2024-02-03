@@ -99,6 +99,8 @@ public class MemberController {
         // 세션 있으면 기존 세션, 없으면 새로운 세션 반환  : default(true)  // false null 반환
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+
+        log.info("loginMember={}",loginMember);
         // 성공 로직 TODO! (일단 홈으로 보내놈)
         return "redirect:/";
     }
@@ -117,6 +119,7 @@ public class MemberController {
 
     @GetMapping("/member/edit")
     public String editMemberFormCreate(@RequestParam Long midx,HttpServletRequest request ,Model model){
+        log.info("midx={}",midx.getClass());
         return check_session(midx, request, model);
     }
 
@@ -125,6 +128,7 @@ public class MemberController {
     @PostMapping("/member/edit")
     public String editMemberForm(
             @Validated @ModelAttribute("member") MemberEditForm editForm,BindingResult bindingResult,Model model){
+
         if(bindingResult.hasErrors()){
             return "member/edit";
         }
