@@ -13,6 +13,7 @@ import java.util.Optional;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class MemberRepositoryImpl implements MemberRepository{
 
     private final MemberMapper memberMapper;
@@ -41,8 +42,10 @@ public class MemberRepositoryImpl implements MemberRepository{
     }
 
     @Override
+
     public int updateMember(MemberEditForm editForm) {
         return memberMapper.updateMember(editForm);
+
     }
 
 

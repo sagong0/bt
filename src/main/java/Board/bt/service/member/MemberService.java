@@ -37,5 +37,6 @@ public class MemberService {
 
     public int updateMember(MemberEditForm memberEdit) {
         return memberRepository.updateMember(memberEdit);
+
     }
 }

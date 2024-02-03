@@ -18,4 +18,5 @@ public interface MemberRepository {
     Optional<Member> findByIdx(Long midx);
 
     int updateMember(MemberEditForm editForm);
+
 }

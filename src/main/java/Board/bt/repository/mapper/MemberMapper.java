@@ -16,5 +16,7 @@ public interface MemberMapper {
 
     Optional<Member> findByIdx(Long idx);
 
+
     int updateMember(MemberEditForm editForm);
+
 }

@@ -24,7 +24,7 @@
       <!-- 예시 게시글 데이터 -->
       <tr th:each="board : ${boards}">
         <th scope="row" th:text="${board.idx}"></th>
-        <td><a href="#" th:text="${board.title}"></a></td>
+        <td><a th:href="@{/board/{boardId}(boardId=${board.idx})}" th:text="${board.title}"></a></td>
         <td th:text="${board.writer}"></td>
         <td th:text="${board.createdAt}"></td>
         <td th:text="${board.count}"></td>

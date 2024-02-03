@@ -7,7 +7,7 @@
     </insert>
 
     <select id="findBoardById" resultType="Board">
-        select * from post where id = #{boardId}
+        select * from post where idx = #{boardId}
     </select>
 
     <select id="findAllBoard" parameterType="BoardSearchCond" resultType="Board">
@@ -44,7 +44,7 @@
         </where>
         </if>
     </select>
-    <update id="updateCount" parameterType="int">
-        update post set count = ++1 where idx = #{boardId}
+    <update id="updateCount" >
+        update post set count = count+1 where idx = #{boardId}
     </update>
 </mapper>

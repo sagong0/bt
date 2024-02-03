@@ -5,39 +5,26 @@
 <!-- 네비게이션 바 -->
 <nav th:replace="~{header :: header_nav}"/>
 <body>
-<!-- 글쓰기 폼 및 내용을 여기에 추가하세요 -->
-<form action="/board/createBoard" method="post" enctype="multipart/form-data">
-  <table class="table">
-    <tr>
-      <td>제목</td>
-      <td><input type="text" name="title" class="form-control"/></td>
-    </tr>
-    <tr>
-      <td>작성자</td>
-      <td><input type="text" name="writer" class="form-control"/></td>
-    </tr>
-    <tr>
-      <td>내용</td>
-      <td><textarea rows="7" name="content" class="form-control"></textarea></td>
-    </tr>
-    <tr>
-      <td>파일 첨부</td>
-      <td><input type="file" name="file"></td>
-    </tr>
-    <tr>
-      <td colspan="2" align="right">
-        <button type="button" onclick="" class="btn btn-success">목록</button>
-        <button type="submit"  class="btn btn-info">등록</button>
-      </td>
-    </tr>
-  </table>
-  <input type="hidden" name="boardLike" value=0>
-  <input type="hidden" name="dislike" value=0>
-  <input type="hidden" name="count" value=0>
-  <input type="hidden" name="memberId" value=1>
-</form>
+<div>
+  <h1 th:text="${board.title}" class="mb-4"></h1>
+  <p>작성자: <span th:text="${board.writer}"></span></p>
+  <div th:if="${board.fileUrl != null}">
+    <img th:src="${{board.fileUrl}" alt="" style="width: 300px; height: 200px;" class="mb-3">
+  </div>
+  <p th:text="${board.content}"></p>
+  <a th:href="@{/board/boardList}" class="btn btn-warning">목록</a>
+  <!-- 게시글 수정 및 삭제 버튼  -->
+  <div th:if="${member.userId != null and member.userId == board.writer}" class="d-flex justify-content-between align-items-center mt-3">
+    <a th:href="@{'/board/' + ${board.idx} + '/edit'}" class="btn btn-warning mr-2">수정</a>
+    <form th:action="@{'/board/' + ${board.idx} + '/delete'}" method="post" onsubmit="return confirm('삭제하시겠습니까?');">
 
+      <button type="submit" class="btn btn-danger">삭제</button>
+    </form>
+  </div>
+</div>
 <!-- 필요한 경우 추가적인 내용이나 스크립트를 추가하세요 -->
 </body>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>
