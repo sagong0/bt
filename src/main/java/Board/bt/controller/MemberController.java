@@ -134,13 +134,8 @@ public class MemberController {
         }
 
         // 성공 로직
-        try{
-            log.info("editForm = {}", editForm);
-            memberService.updateMember(editForm);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+        log.info("editForm = {}", editForm);
+        memberService.updateMember(editForm);
         return "redirect:/";
     }
 

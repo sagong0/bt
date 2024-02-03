@@ -35,10 +35,8 @@ public class MemberService {
         return memberRepository.findByIdx(idx);
     }
 
-    public void updateMember(MemberEditForm memberEdit) {
-        log.info("midx = {}",memberEdit.getMidx());
-        log.info("midxClass = {}",memberEdit.getMidx().getClass());
+    public int updateMember(MemberEditForm memberEdit) {
+        return memberRepository.updateMember(memberEdit);
 
-         memberRepository.updateMember(memberEdit.getMidx());
     }
 }

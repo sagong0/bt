@@ -10,7 +10,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Setter
 @ToString
 public class BoardSearchCond {
-    private String keyword;       // 검색 키워드
+    private String keyword;       // 검색 키워드 (검색어)
     private String searchType;    // 검색 유형
     private int currentPageNo;    // 현재 페이지
     private int recordsPerPage;   // 페이지 당 출력 게시글

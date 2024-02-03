@@ -1,13 +1,10 @@
 package Board.bt.repository.board;
 
 import Board.bt.domain.Board;
-import Board.bt.domain.dto.BoardDto;
 import Board.bt.repository.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 

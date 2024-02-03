@@ -1,6 +1,7 @@
 package Board.bt.repository.mapper;
 
 import Board.bt.domain.Member;
+import Board.bt.domain.form.MemberEditForm;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,5 +16,7 @@ public interface MemberMapper {
 
     Optional<Member> findByIdx(Long idx);
 
-    void updateMember(Long idx);
+
+    int updateMember(MemberEditForm editForm);
+
 }

@@ -1,6 +1,7 @@
 package Board.bt.repository.member;
 
 import Board.bt.domain.Member;
+import Board.bt.domain.form.MemberEditForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +17,6 @@ public interface MemberRepository {
 
     Optional<Member> findByIdx(Long midx);
 
-    void updateMember(Long midx);
+    int updateMember(MemberEditForm editForm);
+
 }
